@@ -27,24 +27,14 @@ public class Job extends AbstractEntity {
     public Employer getEmployer() {
         return employer;
     }
-
     public void setEmployer(Employer employer) {
         this.employer = employer;
     }
-
     public List<Skill> getSkills() {
         return skills;
     }
-
     public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
 
-    public String getSkillString() {
-        String skillString = "";
-        for (Skill skill : skills) {
-            skillString += skill.getName() + " ";
-        }
-        return skillString;
-    }
 }
