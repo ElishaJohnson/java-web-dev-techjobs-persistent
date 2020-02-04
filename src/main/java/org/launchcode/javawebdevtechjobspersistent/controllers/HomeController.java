@@ -53,19 +53,19 @@ public class HomeController {
                                     Errors errors,
                                     Model model,
                                     @RequestParam int employerId,
-                                    @RequestParam List<Integer> skills) {
+                                    @RequestParam(required = false) List<Integer> skills) {
 
+        if (skills == null) { errors.rejectValue("skills", "null","Job must have skills!"); }
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
             model.addAttribute("employers", employerRepository.findAll());
+            model.addAttribute("skills", skillRepository.findAll());
             return "add";
         }
 
         Optional<Employer> result = employerRepository.findById(employerId);
         if (result.isEmpty()) {
             model.addAttribute("title", "Invalid Employer ID: " + employerId);
-        } else if (skills == null) {
-            model.addAttribute("title", "No Skills Found");
         } else {
             List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
             newJob.setSkills(skillObjs);
