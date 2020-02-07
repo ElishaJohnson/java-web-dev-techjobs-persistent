@@ -55,8 +55,8 @@ public class HomeController {
                                     @RequestParam(required = false) Integer employerId,
                                     @RequestParam(required = false) List<Integer> skills) {
 
-        if (skills == null) { errors.rejectValue("skills", "400","Job must have skills!"); }
-        if (employerId == null) { errors.rejectValue("employer", "400", "Employer is required!"); }
+        if (skills == null) { errors.rejectValue("skills", "NullPointerException","Job must have skills!"); }
+        if (employerId == null) { errors.rejectValue("employer", "NullPointerException", "Employer is required!"); }
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
             model.addAttribute("employers", employerRepository.findAll());
